@@ -22,10 +22,18 @@ document.querySelector(".check").addEventListener("click", function () {
   console.log(guess, typeof guess);
 
   //code for click. if guess is not right, it will tell the user if their guess is too high or too low. if its right, it will tell the user they got the correct number. This code also decreases the score by one everytime the user guess the wrong number.
+
+  //When there is no input.
   if (!guess) {
     document.querySelector(".message").textContent = "No number! 😒";
+
+    //When player wins, and get the correct number
   } else if (guess === secretNumber) {
     document.querySelector(".message").textContent = "Correct Number!👏";
+    document.querySelector("body").style.backgroundColor = "#60b347";
+    document.querySelector(".number").style.width = "30rem";
+
+    //When guess is too high
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent =
@@ -36,6 +44,8 @@ document.querySelector(".check").addEventListener("click", function () {
       document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
       document.querySelector(".score").textContent = 0;
     }
+
+    //When guess is too low
   } else if (guess < secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent =
