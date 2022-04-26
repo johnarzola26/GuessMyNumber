@@ -9,9 +9,10 @@
 
 //this code generates a random secret number for the user to guess
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
-
 //score variable
 let score = 20;
+//highscore variable
+let highScore = 0;
 
 //click "Check!"
 document.querySelector(".check").addEventListener("click", function () {
@@ -27,10 +28,16 @@ document.querySelector(".check").addEventListener("click", function () {
     //When player wins, and get the correct number
   } else if (guess === secretNumber) {
     document.querySelector(".message").textContent = "Correct Number!👏";
-    document.querySelector("body").style.backgroundColor = "#60b347";
-    document.querySelector(".number").style.width = "30rem";
     //Put number in the question mark
     document.querySelector(".number").textContent = secretNumber;
+    document.querySelector("body").style.backgroundColor = "#60b347";
+    document.querySelector(".number").style.width = "30rem";
+
+    // If the score is greater than the current high score
+    if (score > highScore) {
+      highScore = score;
+      document.querySelector(".highscore").textContent = highScore;
+    }
     //When guess is too high
   } else if (guess > secretNumber) {
     if (score > 1) {
