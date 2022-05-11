@@ -14,6 +14,10 @@ let score = 20;
 //highscore variable
 let highScore = 0;
 
+const displayMessage = function (message) {
+  document.querySelector(".message").textContent = message;
+};
+
 //click "Check!"
 document.querySelector(".check").addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value);
@@ -23,11 +27,12 @@ document.querySelector(".check").addEventListener("click", function () {
 
   //When there is no input.
   if (!guess) {
-    document.querySelector(".message").textContent = "No number! 😒";
-
+    // document.querySelector(".message").textContent = "No number! 😒";
+    displayMessage("No Number!"); //Function calling to display a message
     //When player wins, and get the correct number
   } else if (guess === secretNumber) {
-    document.querySelector(".message").textContent = "Correct Number!👏";
+    // document.querySelector(".message").textContent = "Correct Number!👏";
+    displayMessage("Correct Number!!");
     //Put number in the question mark
     document.querySelector(".number").textContent = secretNumber;
     document.querySelector("body").style.backgroundColor = "#60b347";
@@ -42,12 +47,16 @@ document.querySelector(".check").addEventListener("click", function () {
     // When the guess is wrong
   } else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector(".message").textContent =
-        guess > secretNumber ? "Number is too high! " : "Number is too low!";
+      // document.querySelector(".message").textContent =
+      //   guess > secretNumber ? "Number is too high! " : "Number is too low!";
+      displayMessage(
+        guess > secretNumber ? "Number is too high! " : "Number is too low!"
+      );
       score--;
       document.querySelector(".score").textContent = score;
     } else {
-      document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
+      // document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
+      displayMessage("YOU LOST THE GAME 😭");
       document.querySelector(".score").textContent = 0;
     }
   }
@@ -85,7 +94,8 @@ document.querySelector(".again").addEventListener("click", function () {
   //secret number in the question mark
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   //Brings the message to the originial state "Start guessing..."
-  document.querySelector(".message").textContent = "Start guessing...";
+  displayMessage("Start guessing...");
+  // document.querySelector(".message").textContent = "Start guessing...";
   //Clears the number, and brings it back to the question mark symbol
   document.querySelector(".number").textContent = "?";
   document.querySelector(".number").style.width = "15rem";
