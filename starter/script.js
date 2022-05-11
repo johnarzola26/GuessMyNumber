@@ -38,31 +38,44 @@ document.querySelector(".check").addEventListener("click", function () {
       highScore = score;
       document.querySelector(".highscore").textContent = highScore;
     }
-    //When guess is too high
-  } else if (guess > secretNumber) {
-    if (score > 1) {
-      document.querySelector(".message").textContent =
-        "Number is too high! Go down a bit!";
-      score--;
-      document.querySelector(".score").textContent = score;
-    } else {
-      document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
-      document.querySelector(".score").textContent = 0;
-    }
 
-    //When guess is too low
-  } else if (guess < secretNumber) {
+    // When the guess is wrong
+  } else if (guess !== secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent =
-        "Number is too low! Go up a bit!";
+        guess > secretNumber ? "Number is too high! " : "Number is too low!";
       score--;
       document.querySelector(".score").textContent = score;
     } else {
       document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
       document.querySelector(".score").textContent = 0;
-      document.querySelector("body").style.backgroundColor = "red";
     }
   }
+  //   //When guess is too high
+  // } else if (guess > secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector(".message").textContent =
+  //       "Number is too high! Go down a bit!";
+  //     score--;
+  //     document.querySelector(".score").textContent = score;
+  //   } else {
+  //     document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
+  //     document.querySelector(".score").textContent = 0;
+  //   }
+
+  //   //When guess is too low
+  // } else if (guess < secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector(".message").textContent =
+  //       "Number is too low! Go up a bit!";
+  //     score--;
+  //     document.querySelector(".score").textContent = score;
+  //   } else {
+  //     document.querySelector(".message").textContent = "YOU LOST THE GAME 😭";
+  //     document.querySelector(".score").textContent = 0;
+  //     document.querySelector("body").style.backgroundColor = "red";
+  //   }
+  // }
 });
 
 //"Again!" Button click
